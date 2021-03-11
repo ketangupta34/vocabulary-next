@@ -7,7 +7,7 @@ export default function Home() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>Vocabulated</h1>
+      <h1 className="text-green-600">Vocabulated</h1>
     </div>
   );
 }
