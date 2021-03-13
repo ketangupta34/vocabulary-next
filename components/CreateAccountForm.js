@@ -32,7 +32,7 @@ function CreateAccountForm({ createAccountButton }) {
         />
         <button
           onClick={createAccountButton}
-          className="text-white border-white border-2 py-1 focus:outline-none hover:bg-white hover:text-purple-700 "
+          className="text-white border-white border-2 py-1 w-full hover:bg-white hover:text-purple-700 font-bold focus:outline-none"
           type="submit"
         >
           Create Account

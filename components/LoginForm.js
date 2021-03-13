@@ -28,7 +28,7 @@ function LoginForm({ createAccountButton }) {
       </form>
       <button
         onClick={createAccountButton}
-        className="text-white border-white border-2 py-1 w-full hover:bg-white hover:text-purple-700 font-bold"
+        className="text-white border-white border-2 py-1 w-full hover:bg-white hover:text-purple-700 font-bold focus:outline-none"
       >
         Create New Account
       </button>
