@@ -1,43 +1,98 @@
-import React from "react";
+import React from 'react';
+import { useRouter } from 'next/router';
 
 function CreateAccountForm({ createAccountButton }) {
+  const router = useRouter();
+
+  const createNewAccount = async (e) => {
+    e.preventDefault();
+    const username = document.querySelector('#newAccUsername').value;
+    const email = document.querySelector('#newAccEmail').value;
+    const password = document.querySelector('#newAccPassword').value;
+    const comparePassword = document.querySelector('#newAccComparePassword')
+      .value;
+
+    const body = {
+      username,
+      email,
+      password,
+      comparePassword,
+    };
+
+    console.log('New Account', body);
+
+    await fetch('/api/createUser', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        if (res.status) {
+          router.push(`/${res.data.username}`);
+        }
+      })
+      .catch((e) => console.log(e));
+  };
+
   return (
-    <div className="flex justify-center items-center flex-col w-72">
-      <h1 className="text-white font-bold text-4xl">Sign Up</h1>
-      <form className="flex flex-col justify-center my-10 w-full">
+    <div className="flex justify-between items-center flex-col w-2/3 h-2/3 text-white">
+      <div className="w-full">
+        <h1 className="font-bold text-4xl">Create a new Account</h1>
+        <h1 className="font-bold text-6xl">To start Vocabulated</h1>
+      </div>
+
+      <form
+        onSubmit={(e) => createNewAccount(e)}
+        className="flex flex-col justify-center my-10 w-96"
+      >
         <input
-          className="text-white bg-transparent border-b-2  mb-2 py-2 focus:outline-none"
-          type="text"
-          placeholder="Name"
-        />
-        <input
-          className="text-white bg-transparent border-b-2  mb-2 py-2 focus:outline-none"
+          id="newAccUsername"
+          className="bg-transparent border-b-4 py-3 font-semibold text-3xl focus:outline-none mb-4"
           type="text"
           placeholder="UserName"
         />
         <input
-          className="text-white bg-transparent border-b-2  mb-2 py-2 focus:outline-none"
+          id="newAccEmail"
+          className="bg-transparent border-b-4 py-3 font-semibold text-3xl focus:outline-none mb-4"
           type="text"
           placeholder="Email"
         />
         <input
-          className="text-white bg-transparent border-b-2 mb-2 py-2 focus:outline-none"
+          id="newAccPassword"
+          className="bg-transparent border-b-4 py-3 font-semibold text-3xl focus:outline-none mb-4"
           type="password"
           placeholder="Password"
         />
         <input
-          className="text-white bg-transparent border-b-2 mb-4 py-2 focus:outline-none"
+          id="newAccComparePassword"
+          className="bg-transparent border-b-4 py-3 font-semibold text-3xl focus:outline-none mb-7"
           type="password"
           placeholder="Confirm Password"
         />
         <button
-          onClick={createAccountButton}
-          className="text-white border-white border-2 py-1 w-full hover:bg-white hover:text-purple-700 font-bold focus:outline-none"
+          className=" border-white border-4 font-bold text-2xl py-2 focus:outline-none hover:bg-white hover:text-purple-600 "
           type="submit"
         >
           Create Account
         </button>
       </form>
+
+      <div className="w-96 flex items-center">
+        <span className="flex-1 h-1 bg-white"></span>
+        <p className="text-lg mx-2">or</p>
+        <span className="flex-1 h-1 bg-white"></span>
+      </div>
+
+      <button
+        onClick={createAccountButton}
+        className=" border-white border-4 font-bold text-2xl py-2 w-96 mt-6 focus:outline-none hover:bg-white hover:text-purple-600 "
+      >
+        Sign In
+      </button>
     </div>
   );
 }
