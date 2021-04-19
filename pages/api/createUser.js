@@ -22,6 +22,8 @@ export default async (request, response) => {
     })
     .catch((e) => {
       console.log(e);
-      response.status(200).json({ status: false, data: { error: e } });
+      response
+        .status(200)
+        .json({ status: false, data: { message: 'Error Occured' } });
     });
 };

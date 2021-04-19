@@ -1,13 +1,30 @@
-import React from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 function LoginForm({ createAccountButton }) {
   const router = useRouter();
 
+  const [error, setErrorState] = useState('');
+  const setError = (error) => {
+    setErrorState(error);
+    setTimeout(() => {
+      setErrorState('');
+    }, 2500);
+  };
+
   const loginUser = async (e) => {
     e.preventDefault();
     const username = document.querySelector('#loginUsername').value;
     const password = document.querySelector('#loginPassword').value;
+
+    if (username.length === 0) {
+      setError('Add Username');
+      return;
+    }
+    if (password.length === 0) {
+      setError('Add Password');
+      return;
+    }
 
     const body = {
       username,
@@ -28,6 +45,8 @@ function LoginForm({ createAccountButton }) {
         console.log(res);
         if (res.status) {
           router.push(`/${res.data.username}`);
+        } else {
+          setError(`${res.data.message}`);
         }
       })
       .catch((e) => console.log(e));
@@ -65,6 +84,7 @@ function LoginForm({ createAccountButton }) {
         <p className="cursor-pointer font-semibold text-lg opacity-80 hover:opacity-100 mt-2">
           forgot Password?
         </p>
+        <p className="w-full text-center text-red-600 text-xl">{error}</p>
       </form>
 
       <div className="w-96 flex items-center">

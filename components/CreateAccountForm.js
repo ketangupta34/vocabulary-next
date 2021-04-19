@@ -1,8 +1,16 @@
-import React from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 
 function CreateAccountForm({ createAccountButton }) {
   const router = useRouter();
+
+  const [error, setErrorState] = useState('');
+  const setError = (error) => {
+    setErrorState(error);
+    setTimeout(() => {
+      setErrorState('');
+    }, 2500);
+  };
 
   const createNewAccount = async (e) => {
     e.preventDefault();
@@ -11,6 +19,23 @@ function CreateAccountForm({ createAccountButton }) {
     const password = document.querySelector('#newAccPassword').value;
     const comparePassword = document.querySelector('#newAccComparePassword')
       .value;
+
+    if (username.length === 0) {
+      setError('Add Username');
+      return;
+    }
+    if (email.length === 0) {
+      setError('Add email');
+      return;
+    }
+    if (password.length === 0) {
+      setError('Add Password');
+      return;
+    }
+    if (password !== comparePassword) {
+      setError('Password Dont Match');
+      return;
+    }
 
     const body = {
       username,
@@ -33,6 +58,8 @@ function CreateAccountForm({ createAccountButton }) {
         console.log(res);
         if (res.status) {
           router.push(`/${res.data.username}`);
+        } else {
+          setError(`${res.data.message}`);
         }
       })
       .catch((e) => console.log(e));
@@ -79,6 +106,7 @@ function CreateAccountForm({ createAccountButton }) {
         >
           Create Account
         </button>
+        <p className="w-full text-center text-red-600 text-xl">{error}</p>
       </form>
 
       <div className="w-96 flex items-center">
