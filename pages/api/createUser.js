@@ -9,6 +9,7 @@ export default async (request, response) => {
     username,
     email,
     password,
+    words: [],
   };
 
   await UserDB.findOneAndUpdate({ username }, data, {

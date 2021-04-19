@@ -1,7 +1,30 @@
 import { useState } from 'react';
+import Image from 'next/image';
 
-export default function WordDetail({ word, defination }) {
+export default function WordDetail({ username, word, defination, refreshData, }) {
   const [wordDetailsOpen, setWordDetailsOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const deleteWordForUser = async () => {
+    setLoading(true);
+
+
+    await fetch('/api/user/deleteWord', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, word: word }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        refreshData();
+        setLoading(false);
+        setWordDetailsOpen(false);
+      })
+      .catch((e) => console.log(e));
+  };
 
   return (
     <div className="w-full">
@@ -29,8 +52,16 @@ export default function WordDetail({ word, defination }) {
             <p className="text-2xl">{defination}</p>
 
             <div className="flex justify-center items-center">
-              <button className="font-semibold text-2xl py-2 w-40 rounded-lg border-4 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white  ">
-                delete
+              <button
+              disabled={loading}
+                onClick={deleteWordForUser}
+                className="font-semibold text-2xl py-2 w-40 rounded-lg border-4 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white  "
+              >
+                {loading ? (
+                  <Image src="/loading.gif" width={25} height={25} />
+                ) : (
+                  'Delete'
+                )}
               </button>
             </div>
           </div>

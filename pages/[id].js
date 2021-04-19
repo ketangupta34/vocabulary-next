@@ -16,9 +16,7 @@ export default function User() {
   });
   const [searchTerm, setSearchTerm] = useState('');
 
-  useEffect(async () => {
-    console.log(id);
-
+  const getData = async () => {
     await fetch('/api/getUserData', {
       method: 'POST',
       headers: {
@@ -33,24 +31,17 @@ export default function User() {
           setUserData({
             username: res.data.username,
             email: res.data.email,
-            words: [
-              {
-                word: 'Ketan',
-                defination: 'doibfovnsfo',
-              },
-              {
-                word: 'Ketan',
-                defination: 'doibfovnsfo',
-              },
-              {
-                word: 'Ketan',
-                defination: 'doibfovnsfo',
-              },
-            ],
+            words: res.data.words,
           });
         }
       })
       .catch((e) => console.log(e));
+  };
+
+  useEffect(() => {
+    console.log(id);
+
+    getData();
   }, [id]);
 
   return (
@@ -79,15 +70,16 @@ export default function User() {
               .map((data, index) => (
                 <WordDetail
                   key={index}
+                  username={userData.username}
                   word={data.word}
                   defination={data.defination}
-                  // update={updateList}
+                  refreshData={getData}
                 />
               ))}
           </div>
         )}
 
-        <AddWord />
+        <AddWord username={userData.username} refreshData={getData} />
       </div>
     </div>
   );

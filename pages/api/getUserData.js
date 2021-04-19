@@ -15,7 +15,7 @@ export default async (request, response) => {
           data: {
             username: result.username,
             email: result.email,
-            word: result.words,
+            words: result.words,
           },
         });
       } else {

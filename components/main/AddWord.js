@@ -1,11 +1,30 @@
 import { useState } from 'react';
+import Image from 'next/image';
 
-export default function AddWord() {
+export default function AddWord({ username, refreshData }) {
   const [wordAdder, setwordAdder] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const addWordToDatabase = async () => {
+    setLoading(true);
     const word = document.querySelector('#wordInput').value;
     console.log(word);
+
+    await fetch('/api/user/addWord', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, word: word }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        refreshData();
+        setLoading(false);
+        setwordAdder(false);
+      })
+      .catch((e) => console.log(e));
   };
 
   return (
@@ -39,10 +58,15 @@ export default function AddWord() {
 
             <div className="flex justify-center items-center">
               <button
+                disabled={loading}
                 onClick={addWordToDatabase}
                 className="font-semibold text-2xl py-2 w-40 rounded-lg border-4 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white  "
               >
-                Add
+                {loading ? (
+                  <Image src="/loading.gif" width={25} height={25} />
+                ) : (
+                  'Add'
+                )}
               </button>
             </div>
           </div>
