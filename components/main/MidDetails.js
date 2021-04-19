@@ -1,8 +1,18 @@
+import { useEffect } from 'react';
 export default function MidDetails({ username, length }) {
+  useEffect(() => {
+    document.querySelector('#progressBar').style.width = `${length}%`;
+  }, [length]);
+
   return (
     <div className="w-5/6 h-40 flex items-center mb-5">
       <div className="flex-1 h-full flex flex-col justify-between rounded-lg bg-white p-3 mr-2">
-        <h1 className="font-semibold text-3xl">Good Afternoon, {username}!</h1>
+        <div className="flex justify-between items-center">
+          <h1 className="font-semibold text-2xl">
+            Good Afternoon, {username}!
+          </h1>
+          <p className="font-semibold text-2xl text-purple-600">Level 1</p>
+        </div>
 
         <h1 className="text-gray-300 w-full text-center text-4xl font-bold">
           Keep Adding More Words!
@@ -13,7 +23,10 @@ export default function MidDetails({ username, length }) {
             <span className="font-bold">{length}/100 Words</span>
           </p>
           <div className="w-full bg-white h-4 border-2 border-purple-600 rounded-full">
-            <div className="bg-purple-600 h-full w-40 rounded-l-full"></div>
+            <div
+              id="progressBar"
+              className="bg-purple-600 h-full w-40 rounded-l-full"
+            ></div>
           </div>
         </div>
       </div>
