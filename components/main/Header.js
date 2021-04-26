@@ -1,7 +1,7 @@
 export default function Header({ setSearchTerm }) {
   return (
     <div className="w-5/6 h-36 flex justify-between items-center">
-      <h1 className="text-white text-5xl font-bold">VOCABULATED</h1>
+      <h1 className="text-white text-5xl font-bold font-serif">VOCABULATED</h1>
 
       <div className="searchWord">
         <input

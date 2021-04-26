@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
-export default function WordDetail({ username, word, defination, refreshData, }) {
+export default function WordDetail({
+  username,
+  word,
+  defination,
+  refreshData,
+}) {
   const [wordDetailsOpen, setWordDetailsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const deleteWordForUser = async () => {
     setLoading(true);
-
 
     await fetch('/api/user/deleteWord', {
       method: 'POST',
@@ -53,7 +57,7 @@ export default function WordDetail({ username, word, defination, refreshData, })
 
             <div className="flex justify-center items-center">
               <button
-              disabled={loading}
+                disabled={loading}
                 onClick={deleteWordForUser}
                 className="font-semibold text-2xl py-2 w-40 rounded-lg border-4 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white  "
               >

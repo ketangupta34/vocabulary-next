@@ -9,6 +9,11 @@ export default function User() {
   const router = useRouter();
   const { id } = router.query;
 
+  useEffect(() => {
+    document.querySelector('#mainPage').classList.remove('opacity-0');
+    document.querySelector('#mainPage').classList.add('opacity-100');
+  }, []);
+
   const [userData, setUserData] = useState({
     username: '',
     email: '',
@@ -40,12 +45,14 @@ export default function User() {
 
   useEffect(() => {
     console.log(id);
-
     getData();
   }, [id]);
 
   return (
-    <div className="bg-purple-600 w-screen min-h-screen flex flex-col items-center">
+    <div
+      id="mainPage"
+      className="bg-purple-600 w-screen min-h-screen flex flex-col items-center opacity-0 transition-all font-sans duration-500"
+    >
       <Header setSearchTerm={setSearchTerm} />
 
       <MidDetails username={userData.username} length={userData.words.length} />
