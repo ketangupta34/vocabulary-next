@@ -1,6 +1,6 @@
 import mongoose, { connect, connection, model } from 'mongoose';
 
-connect('mongodb://localhost/Vocabulated', {
+connect(process.env.MONGODB_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true,

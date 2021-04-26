@@ -62,7 +62,7 @@ export default function WordDetail({
                 className="font-semibold text-2xl py-2 w-40 rounded-lg border-4 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white  "
               >
                 {loading ? (
-                  <Image src="/loading.gif" width={25} height={25} />
+                  <Image src="/loading.gif" width={30} height={30} />
                 ) : (
                   'Delete'
                 )}

@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 function CreateAccountForm({ createAccountButton }) {
   const router = useRouter();
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     document.querySelector('#createAccForm').classList.remove('opacity-0');
     document.querySelector('#createAccForm').classList.add('opacity-100');
@@ -42,6 +44,7 @@ function CreateAccountForm({ createAccountButton }) {
       return;
     }
 
+    setLoading(true);
     const body = {
       username,
       email,
@@ -66,8 +69,12 @@ function CreateAccountForm({ createAccountButton }) {
         } else {
           setError(`${res.data.message}`);
         }
+        setLoading(true);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e);
+        setLoading(true);
+      });
   };
 
   const changeForm = () => {
@@ -119,7 +126,11 @@ function CreateAccountForm({ createAccountButton }) {
           className=" border-white border-3 rounded-md transition-all font-bold text-2xl py-2 focus:outline-none hover:bg-white hover:text-purple-600 "
           type="submit"
         >
-          Create Account
+          {loading ? (
+            <Image src="/loading.gif" width={30} height={30} />
+          ) : (
+            'LOGIN'
+          )}
         </button>
         <p className="w-full text-center text-red-600 text-xl">{error}</p>
       </form>

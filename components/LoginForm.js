@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 function LoginForm({ createAccountButton }) {
   const router = useRouter();
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     document.querySelector('#loginForm').classList.remove('opacity-0');
@@ -38,6 +41,7 @@ function LoginForm({ createAccountButton }) {
       return;
     }
 
+    setLoading(true);
     const body = {
       username,
       password,
@@ -60,8 +64,12 @@ function LoginForm({ createAccountButton }) {
         } else {
           setError(`${res.data.message}`);
         }
+        setLoading(false);
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e);
+        setLoading(false);
+      });
   };
   return (
     <div
@@ -90,10 +98,15 @@ function LoginForm({ createAccountButton }) {
           placeholder="Password"
         />
         <button
+          disabled={loading}
           className=" border-white border-3 font-bold rounded-md text-2xl py-2 focus:outline-none hover:bg-white hover:text-purple-600 transition-all "
           type="submit"
         >
-          Login
+          {loading ? (
+            <Image src="/loading.gif" width={30} height={30} />
+          ) : (
+            'LOGIN'
+          )}
         </button>
 
         <p className="cursor-pointer font-semibold text-lg opacity-80 hover:opacity-100 transition-all mt-2">
