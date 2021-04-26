@@ -1,6 +1,8 @@
 import mongoose, { connect, connection, model } from 'mongoose';
 
-connect(process.env.MONGODB_URI, {
+const { MONGODB_URI } = process.env;
+
+connect(MONGODB_URI, {
   useUnifiedTopology: true,
   useNewUrlParser: true,
   useCreateIndex: true,
