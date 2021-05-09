@@ -32,11 +32,11 @@ export default function Animation3({ nextAnimation }) {
       id="bgChange3"
       className="bg-white transition-all duration-300 w-screen h-screen flex justify-center items-center"
     >
-      <div className="h-2/3 w-2/3 text-purple-600 flex justify-between flex-col">
+      <div className="h-4/5 md:h-2/3 w-11/12 sm:w-10/12 lg:w-2/3 text-purple-600 flex justify-between flex-col">
         <div>
           <h1
             className={
-              'text-8xl font-bold transition-all duration-500 delay-100' +
+              'text-5xl md:text-7xl font-bold transition-all duration-500 delay-100' +
               (!animate
                 ? ' transform translate-x-3 opacity-0'
                 : ' transform translate-x-0 opacity-100')
@@ -46,7 +46,7 @@ export default function Animation3({ nextAnimation }) {
           </h1>
           <h1
             className={
-              'text-8xl font-bold transition-all duration-500 delay-100' +
+              'text-5xl md:text-7xl mt-5 font-bold transition-all duration-500 delay-100' +
               (!animate
                 ? ' transform translate-x-3 opacity-0'
                 : ' transform translate-x-0 opacity-200')
@@ -57,7 +57,7 @@ export default function Animation3({ nextAnimation }) {
 
           <p
             className={
-              'text-2xl mt-10 transition-all duration-500 delay-500' +
+              'text-xl mt-20 transition-all duration-500 delay-500' +
               (!animate
                 ? ' transform -translate-x-10 opacity-0'
                 : ' transform translate-x-0 opacity-300')
@@ -74,7 +74,7 @@ export default function Animation3({ nextAnimation }) {
             id="buttonAnimate3"
             onClick={changePage}
             className={
-              'float-right border-3 border-purple-600 hover:bg-purple-600 text-purple-600 hover:text-white rounded-xl text-3xl focus:outline-none font-bold py-2 w-40 transition-all duration-200 delay-500 ' +
+              'float-right border-3 border-purple-600 hover:bg-purple-600 text-purple-600 hover:text-white rounded-xl text-2xl sm:text-3xl focus:outline-none font-bold py-2 w-40 transition-all duration-200 delay-500 ' +
               (!animate ? ' opacity-0' : ' opacity-100')
             }
           >

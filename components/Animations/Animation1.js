@@ -31,11 +31,11 @@ export default function Animation1({ nextAnimation }) {
       id="bgChange1"
       className=" bg-purple-700 transition-all duration-300 w-screen h-screen flex justify-center items-center"
     >
-      <div className="h-2/3 w-2/3 text-white flex justify-between flex-col">
+      <div className="h-2/3 w-11/12 sm:w-10/12 lg:w-2/3 text-white flex justify-between flex-col">
         <div>
           <h1
             className={
-              'text-8xl font-bold transition-all duration-500 delay-100' +
+              'text-5xl md:text-7xl font-bold transition-all duration-500 delay-100' +
               (!animate
                 ? ' transform translate-x-3 opacity-0'
                 : ' transform translate-x-0 opacity-100')
@@ -45,7 +45,7 @@ export default function Animation1({ nextAnimation }) {
           </h1>
           <h1
             className={
-              'text-9xl font-bold transition-all duration-500 delay-200' +
+              'text-6xl sm:text-8xl md:text-9xl font-bold transition-all duration-500 delay-200' +
               (!animate
                 ? ' transform translate-x-3 opacity-0'
                 : ' transform translate-x-0 opacity-100')
@@ -55,7 +55,7 @@ export default function Animation1({ nextAnimation }) {
           </h1>
           <h1
             className={
-              'text-8xl font-bold transition-all duration-500 delay-300' +
+              'text-5xl md:text-7xl font-bold transition-all duration-500 delay-300' +
               (!animate
                 ? ' transform translate-x-3 opacity-0'
                 : ' transform translate-x-0 opacity-100')
@@ -66,7 +66,7 @@ export default function Animation1({ nextAnimation }) {
 
           <p
             className={
-              'text-2xl mt-10 transition-all duration-500 delay-500' +
+              'text-xl mt-20 transition-all duration-500 delay-500' +
               (!animate
                 ? ' transform -translate-x-10 opacity-0'
                 : ' transform translate-x-0 opacity-100')
@@ -76,7 +76,7 @@ export default function Animation1({ nextAnimation }) {
           </p>
           <p
             className={
-              'text-2xl transition-all duration-500 delay-500' +
+              'text-xl sm:text-2xl transition-all duration-500 delay-500' +
               (!animate
                 ? ' transform translate-x-10 opacity-0'
                 : ' transform translate-x-0 opacity-100')
@@ -91,7 +91,7 @@ export default function Animation1({ nextAnimation }) {
             id="buttonAnimate1"
             onClick={changePage}
             className={
-              'float-right border-3 border-white hover:bg-white hover:text-purple-600 rounded-xl text-3xl focus:outline-none font-bold py-2 w-40 transition-all duration-200 delay-700 ' +
+              'float-right border-3 border-white hover:bg-white hover:text-purple-600 rounded-xl text-2xl md:text-3xl focus:outline-none font-bold py-2 w-40 transition-all duration-200 delay-700 ' +
               (!animate ? ' opacity-0' : ' opacity-100')
             }
           >
