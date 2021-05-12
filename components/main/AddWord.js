@@ -28,12 +28,14 @@ export default function AddWord({ username, refreshData }) {
   };
 
   return (
-    <div>
-      <div
-        className=" fixed bottom-10 right-56 bg-purple-600 rounded-full w-20 h-20 flex justify-center items-center z-10 cursor-pointer"
-        onClick={() => setwordAdder(!wordAdder)}
-      >
-        <p className="text-white text-3xl">&#10010;</p>
+    <div className="fixed w-screen bottom-0 left-0 flex justify-center">
+      <div className="w-5/6 flex justify-end mr-8 md:mr-16 mb-3 md:mb-5">
+        <div
+          className="bg-purple-600 rounded-full w-16 h-16 md:w-20 md:h-20 flex justify-center items-center z-10 cursor-pointer"
+          onClick={() => setwordAdder(!wordAdder)}
+        >
+          <p className="text-white text-3xl">&#10010;</p>
+        </div>
       </div>
 
       {wordAdder && (

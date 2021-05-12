@@ -42,7 +42,7 @@ export default function WordDetail({
 
       {wordDetailsOpen && (
         <div className=" absolute top-0 left-0 w-screen h-screen flex justify-center items-center bg-black bg-opacity-50">
-          <div className="w-1/3 h-2/3 bg-white rounded-lg p-4 flex flex-col justify-between">
+          <div className="w-10/12 sm:w-8/12 md:6/12 xl:w-5/12 h-2/3 bg-white rounded-lg p-4 flex flex-col justify-between">
             <div className="flex justify-between">
               <h2 className="font-bold text-4xl">{word}</h2>
               <p

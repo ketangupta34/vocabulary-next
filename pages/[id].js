@@ -51,13 +51,22 @@ export default function User() {
   return (
     <div
       id="mainPage"
-      className="bg-purple-600 w-screen min-h-screen flex flex-col items-center opacity-0 transition-all font-sans duration-500"
+      className=" bg-purple-600  min-h-screen flex flex-col items-center opacity-0 transition-all duration-500"
     >
-      <Header setSearchTerm={setSearchTerm} />
+      <Header username={userData.username} />
 
       <MidDetails username={userData.username} length={userData.words.length} />
 
-      <div className="w-5/6 flex-1 flex flex-col items-center bg-white rounded-lg p-3">
+      <div className="w-5/6 flex-1 flex flex-col items-center bg-white rounded-lg p-3 mb-10 md:mb-2">
+        <div className="w-full flex items-center justify-end border-b-2 border-gray-300 mb-2 pb-3">
+          <input
+            className=" max-w-full bg-transparent font-medium text-xl border-2 py-1 px-4 rounded-full border-gray-300 hover:border-purple-600 focus:border-purple-600 outline-none transition-all"
+            type="text"
+            placeholder="Search"
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
         {userData.words.length === 0 ? (
           <div className="w-full flex-1 flex justify-center items-center">
             <h1>Start Adding New Words</h1>

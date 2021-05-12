@@ -27,18 +27,6 @@ function CreateAccountForm({ createAccountButton }) {
     const comparePassword = document.querySelector('#newAccComparePassword')
       .value;
 
-    if (username.length === 0) {
-      setError('Add Username');
-      return;
-    }
-    if (email.length === 0) {
-      setError('Add email');
-      return;
-    }
-    if (password.length === 0) {
-      setError('Add Password');
-      return;
-    }
     if (password !== comparePassword) {
       setError('Password Dont Match');
       return;
@@ -85,64 +73,72 @@ function CreateAccountForm({ createAccountButton }) {
   };
 
   return (
-    <div
-      id="createAccForm"
-      className="opacity-0 transition-all duration-200 flex justify-between items-center flex-col w-2/3 h-2/3 text-white"
-    >
-      <div>
-        <h1 className="font-bold text-3xl">Start by </h1>
-        <h1 className="font-bold text-5xl">Creating an Account</h1>
-      </div>
-
-      <form
-        onSubmit={(e) => createNewAccount(e)}
-        className="flex flex-col justify-center my-10 w-96"
+    <div className="w-80 sm:w-96 h-4/5 md:h-2/3 p-5 bg-white rounded-lg shadow-lg text-purple-600">
+      <div
+        id="createAccForm"
+        className="transition-all duration-500 flex flex-col justify-between items-center h-full w-full opacity-0"
       >
-        <input
-          id="newAccUsername"
-          className="bg-transparent focus:bg-transparent border-b-3 py-2 font-semibold text-2xl focus:outline-none mb-2"
-          type="text"
-          placeholder="UserName"
-        />
-        <input
-          id="newAccEmail"
-          className="bg-transparent focus:bg-transparent border-b-3 py-2 font-semibold text-2xl focus:outline-none mb-2"
-          type="text"
-          placeholder="Email"
-        />
-        <input
-          id="newAccPassword"
-          className="bg-transparent focus:bg-transparent border-b-3 py-2 font-semibold text-2xl focus:outline-none mb-2"
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          id="newAccComparePassword"
-          className="bg-transparent focus:bg-transparent border-b-3 py-2 font-semibold text-2xl focus:outline-none mb-4"
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <button
-          className=" border-white border-3 rounded-md transition-all font-bold text-2xl py-2 focus:outline-none hover:bg-white hover:text-purple-600 "
-          type="submit"
-        >
-          {loading ? (
-            <Image src="/loading.gif" width={30} height={30} />
-          ) : (
-            'LOGIN'
-          )}
-        </button>
-        <p className="w-full text-center text-red-600 text-xl">{error}</p>
-      </form>
+        <div className="w-full">
+          <h1 className="font-bold text-xl">Start by </h1>
+          <h1 className="font-bold text-3xl sm:text-4xl">Creating an Account</h1>
+        </div>
 
-      <div className=" w-96 flex flex-col justify-center items-center">
-        <p className="text-lg font-medium mb-2">Already have an account?</p>
-        <button
-          onClick={changeForm}
-          className=" border-white border-3 rounded-md transition-all w-full font-bold text-2xl py-2 focus:outline-none hover:bg-white hover:text-purple-600 "
+        <form
+          onSubmit={(e) => createNewAccount(e)}
+          className="flex flex-col justify-center my-10 w-full"
         >
-          Sign In
-        </button>
+          <input
+            id="newAccUsername"
+            className="bg-transparent border-b-3 py-2 font-semibold text-xl outline-none focus:border-purple-600 transition-all mb-2"
+            type="text"
+            placeholder="UserName"
+            autoComplete="off"
+            required="required"
+          />
+          <input
+            id="newAccEmail"
+            className="bg-transparent border-b-3 py-2 font-semibold text-xl outline-none focus:border-purple-600 transition-all mb-2"
+            type="email"
+            placeholder="Email"
+            autoComplete="off"
+            required="required"
+          />
+          <input
+            id="newAccPassword"
+            className="bg-transparent border-b-3 py-2 font-semibold text-xl outline-none focus:border-purple-600 transition-all mb-2"
+            type="password"
+            placeholder="Password"
+            required="required"
+          />
+          <input
+            id="newAccComparePassword"
+            className="bg-transparent border-b-3 py-2 font-semibold text-xl outline-none focus:border-purple-600 transition-all mb-2"
+            type="password"
+            placeholder="Confirm Password"
+            required="required"
+          />
+          <button
+            className=" border-purple-600 border-2 font-bold rounded-lg text-xl py-2 focus:outline-none hover:bg-purple-600 hover:text-white transition-all"
+            type="submit"
+          >
+            {loading ? (
+              <Image src="/loading.gif" width={30} height={30} />
+            ) : (
+              'LOGIN'
+            )}
+          </button>
+          <p className="w-full text-center text-red-600 text-xl">{error}</p>
+        </form>
+
+        <div className="w-full flex flex-col justify-center items-center">
+          <p className="text-lg font-medium mb-2">Already have an account?</p>
+          <button
+            onClick={changeForm}
+            className=" border-purple-600 border-2 font-bold rounded-lg text-xl py-2 w-full focus:outline-none hover:bg-purple-600 hover:text-white transition-all"
+          >
+            Sign In
+          </button>
+        </div>
       </div>
     </div>
   );

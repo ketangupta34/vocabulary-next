@@ -72,57 +72,62 @@ function LoginForm({ createAccountButton }) {
       });
   };
   return (
-    <div
-      id="loginForm"
-      className="transition-all duration-200 flex justify-between items-center flex-col w-2/3 h-2/3 text-white opacity-0"
-    >
-      <div>
-        <h1 className="font-bold text-3xl">Sign In to</h1>
-        <h1 className="font-bold text-6xl">Vocabulated</h1>
-      </div>
-
-      <form
-        onSubmit={(e) => loginUser(e)}
-        className="flex flex-col justify-center my-10 w-96"
+    <div className="w-80 sm:w-96 h-4/5 md:h-2/3 p-5 bg-white rounded-lg shadow-lg text-purple-600">
+      <div
+        id="loginForm"
+        className="transition-all duration-500 flex flex-col justify-between items-center h-full w-full opacity-0"
       >
-        <input
-          id="loginUsername"
-          className="bg-transparent focus:bg-transparent border-b-3 py-2 font-semibold text-2xl focus:outline-none"
-          type="text"
-          placeholder="UserName"
-        />
-        <input
-          id="loginPassword"
-          className="bg-transparent focus:bg-transparent border-b-3 py-2 font-semibold text-2xl focus:outline-none my-7"
-          type="password"
-          placeholder="Password"
-        />
-        <button
-          disabled={loading}
-          className=" border-white border-3 font-bold rounded-md text-2xl py-2 focus:outline-none hover:bg-white hover:text-purple-600 transition-all "
-          type="submit"
-        >
-          {loading ? (
-            <Image src="/loading.gif" width={30} height={30} />
-          ) : (
-            'LOGIN'
-          )}
-        </button>
+        <div className="w-full">
+          <h1 className="font-bold text-xl">Sign In to</h1>
+          <h1 className="font-bold text-4xl">Vocabulated</h1>
+        </div>
 
-        <p className="cursor-pointer font-semibold text-lg opacity-80 hover:opacity-100 transition-all mt-2">
-          forgot Password?
-        </p>
-        <p className="w-full text-center text-red-600 text-xl">{error}</p>
-      </form>
-
-      <div className="w-full flex flex-col justify-center items-center">
-        <p className="text-lg font-medium mb-2">New Here?</p>
-        <button
-          onClick={changeForm}
-          className=" border-white border-3 font-bold rounded-md text-2xl py-2 w-96 focus:outline-none hover:bg-white hover:text-purple-600 transition-all"
+        <form
+          onSubmit={(e) => loginUser(e)}
+          className="flex flex-col justify-center my-12 w-full"
         >
-          Create New Account
-        </button>
+          <input
+            id="loginUsername"
+            className="bg-transparent border-b-3 py-2 font-semibold text-xl outline-none focus:border-purple-600 transition-all"
+            type="text"
+            placeholder="UserName"
+            autoComplete="off"
+            required="required"
+          />
+          <input
+            id="loginPassword"
+            className="bg-transparent border-b-3 py-2 font-semibold text-xl outline-none focus:border-purple-600 transition-all my-7"
+            type="password"
+            placeholder="Password"
+            required="required"
+          />
+          <button
+            disabled={loading}
+            className=" border-purple-600 border-2 font-bold rounded-lg text-xl py-2 focus:outline-none hover:bg-purple-600 hover:text-white transition-all"
+            type="submit"
+          >
+            {loading ? (
+              <Image src="/loading.gif" width={30} height={30} />
+            ) : (
+              'LOGIN'
+            )}
+          </button>
+
+          <p className="cursor-pointer font-semibold text-base opacity-50 hover:opacity-100 transition-all mt-2">
+            forgot Password?
+          </p>
+          <p className="w-full text-center text-red-600 text-xl">{error}</p>
+        </form>
+
+        <div className="w-full flex flex-col justify-center items-center">
+          <p className="text-lg font-medium mb-2">New Here?</p>
+          <button
+            onClick={changeForm}
+            className=" border-purple-600 border-2 font-bold rounded-lg text-xl py-2 w-full focus:outline-none hover:bg-purple-600 hover:text-white transition-all"
+          >
+            Create New Account
+          </button>
+        </div>
       </div>
     </div>
   );
